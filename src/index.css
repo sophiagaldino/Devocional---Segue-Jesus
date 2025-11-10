@@ -1,0 +1,57 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Inter, sans-serif;
+}
+body {
+  font-family: Inter, sans-serif;
+  background-color: #ffffff;
+  color: #1f2937;
+} */
+ /* 🌿 Arquivo: src/index.css  (ou global.css caso use Tailwind) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #ebfbf3;
+  --text-primary: #1E3A8A;
+  --text-dark: #0f172a;
+  --card-bg: #ffffff;
+  --accent: #314EAA;
+}
+
+/* Fundo global e estilo base */
+body {
+  @apply bg-[var(--bg-primary)] text-[var(--text-dark)];
+  font-family: 'Inter', sans-serif;
+}
+
+/* Estilo padrão para botões */
+.btn {
+  @apply bg-[var(--text-primary)] text-white font-semibold py-2 px-4 rounded-lg shadow-sm transition;
+}
+.btn:hover {
+  @apply bg-[var(--accent)];
+}
+
+/* Estilo para cards */
+.card {
+  @apply bg-[var(--card-bg)] shadow-md rounded-xl p-4;
+}
+
+/* Cabeçalhos */
+.title {
+  @apply text-[var(--text-primary)] font-bold;
+}
+
+/* Navegação inferior */
+.navbar {
+  @apply flex justify-around bg-[#d8eee4] shadow-md py-3 border-t border-[#c2e3d6];
+}
+.navbar button {
+  @apply text-[var(--text-primary)] hover:text-[var(--accent)];
+}
+
