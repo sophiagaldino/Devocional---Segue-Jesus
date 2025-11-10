@@ -26,7 +26,6 @@ export default function Login({ onLogin }) {
       const data = await res.json();
 
       if (res.ok) {
-        // Login bem-sucedido
         if (remember) {
           localStorage.setItem("loggedIn", "true");
           localStorage.setItem("user", usernameFormatted);

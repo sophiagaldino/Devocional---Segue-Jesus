@@ -30,8 +30,8 @@ export default function Register() {
       });
 
       const data = await res.json();
+
       if (res.ok) {
-        // Cadastro bem-sucedido
         if (remember) {
           localStorage.setItem("loggedIn", "true");
           localStorage.setItem("user", usernameFormatted);

@@ -1,13 +1,11 @@
+import { users } from "./users";
 import bcrypt from "bcryptjs";
-
-let users = {}; // banco em memória simples (substituir por DB real em produção)
 
 export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Método não permitido" });
 
   const { username, password } = req.body;
-
   if (!username || !password)
     return res.status(400).json({ error: "Dados incompletos" });
 
