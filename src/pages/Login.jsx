@@ -1,8 +1,11 @@
 // src/pages/Login.jsx
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock } from "lucide-react";
 import bcrypt from "bcryptjs";
+
+// Importando usuários do arquivo JSON
+import usersData from "../data/users.json";
 
 export default function Login({ onLogin }) {
   const navigate = useNavigate();
@@ -11,39 +14,17 @@ export default function Login({ onLogin }) {
   const [error, setError] = useState("");
   const [remember, setRemember] = useState(false);
 
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("credentials")) || {};
-      if (!("Sophia" in saved)) {
-        const defaultPassword = "solsol";
-        const hash = bcrypt.hashSync(defaultPassword, 10);
-        saved["Sophia"] = hash;
-        localStorage.setItem("credentials", JSON.stringify(saved));
-        console.log("Seed: usuário 'Sophia' criado no localStorage.");
-      }
-    } catch (err) {
-      console.error("Erro ao criar seed do admin:", err);
-    }
-  }, []);
-
   const handleLogin = (e) => {
     e.preventDefault();
 
     const usernameFormatted =
       username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
 
-    const credentials = JSON.parse(localStorage.getItem("credentials") || "{}");
+    // Busca no JSON de usuários
+    const storedHash = usersData[usernameFormatted];
 
-    if (!(usernameFormatted in credentials)) {
+    if (!storedHash) {
       setError("Usuário não encontrado.");
-      return;
-    }
-
-    const storedHash = credentials[usernameFormatted];
-
-    if (storedHash === null) {
-      localStorage.setItem("pendingSetupUser", usernameFormatted);
-      navigate("/setup-password");
       return;
     }
 
