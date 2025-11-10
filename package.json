@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "lucide-react": "^0.552.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,5 +23,18 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.14",
     "vite": "^5.0.0"
-  }
+  },
+  "description": "Mini-site React + Vite (clean edition) — só para vocês dois, com login por senha e busca de capítulos via API.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sophiagaldino/Devocional---Segue-Jesus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sophiagaldino/Devocional---Segue-Jesus/issues"
+  },
+  "homepage": "https://github.com/sophiagaldino/Devocional---Segue-Jesus#readme"
 }
