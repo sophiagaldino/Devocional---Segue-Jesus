@@ -1,5 +1,5 @@
 // src/pages/Login.jsx
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock } from "lucide-react";
 import bcrypt from "bcryptjs";
@@ -10,6 +10,21 @@ export default function Login({ onLogin }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [remember, setRemember] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("credentials")) || {};
+      if (!("Sophia" in saved)) {
+        const defaultPassword = "solsol";
+        const hash = bcrypt.hashSync(defaultPassword, 10);
+        saved["Sophia"] = hash;
+        localStorage.setItem("credentials", JSON.stringify(saved));
+        console.log("Seed: usuário 'Sophia' criado no localStorage.");
+      }
+    } catch (err) {
+      console.error("Erro ao criar seed do admin:", err);
+    }
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
