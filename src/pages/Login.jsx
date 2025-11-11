@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock } from "lucide-react";
@@ -10,6 +9,10 @@ export default function Login({ onLogin }) {
   const [error, setError] = useState("");
   const [remember, setRemember] = useState(false);
 
+  // 🔹 Detecta ambiente automaticamente
+  const API_URL =
+    import.meta.env.MODE === "development" ? "http://localhost:5000" : "";
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -17,7 +20,7 @@ export default function Login({ onLogin }) {
       username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: usernameFormatted, password }),

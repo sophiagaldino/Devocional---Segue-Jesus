@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserPlus } from "lucide-react";
@@ -10,6 +9,10 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [message, setMessage] = useState("");
+
+  // 🔹 Detecta ambiente automaticamente
+  const API_URL =
+    import.meta.env.MODE === "development" ? "http://localhost:5000" : "";
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ export default function Register() {
       username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
 
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch(`${API_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: usernameFormatted, password }),
